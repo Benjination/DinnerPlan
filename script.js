@@ -100,7 +100,7 @@ class MealPlannerCalendar {
         
         const isCurrentMonth = date.getMonth() === currentMonth;
         const dateString = this.formatDateString(date);
-        const meal = getMealForDate(dateString);
+        const meal = typeof getMealForDate === 'function' ? getMealForDate(dateString) : null;
         const isSunday = date.getDay() === 0; // 0 = Sunday
         
         if (!isCurrentMonth) {
@@ -168,7 +168,7 @@ class MealPlannerCalendar {
 
         // Get shopping list for this week
         const dateString = this.formatDateString(date);
-        const shoppingData = getShoppingListForDate(dateString);
+        const shoppingData = typeof getShoppingListForDate === 'function' ? getShoppingListForDate(dateString) : null;
 
         let content = `
             <div class="shopping-info">
@@ -249,7 +249,7 @@ class MealPlannerCalendar {
         dateElement.textContent = "📦 Pantry Inventory";
 
         // Get inventory data
-        const inventory = getOnHandInventory();
+        const inventory = typeof getOnHandInventory === 'function' ? getOnHandInventory() : null;
 
         let content = `
             <div class="inventory-info">
@@ -257,28 +257,32 @@ class MealPlannerCalendar {
                 <p class="inventory-subtitle">Check what you have and what you need</p>
         `;
 
-        Object.keys(inventory).forEach(categoryKey => {
-            const category = inventory[categoryKey];
-            content += `
-                <div class="inventory-category">
-                    <h4>${category.title}</h4>
-            `;
-
-            category.items.forEach(item => {
-                const statusClass = item.status === 'have' ? 'status-have' : 'status-need';
-                const statusText = item.status === 'have' ? '✓ Have' : '✗ Need';
-                const quantityText = item.quantity ? ` (${item.quantity})` : '';
-                
+        if (inventory) {
+            Object.keys(inventory).forEach(categoryKey => {
+                const category = inventory[categoryKey];
                 content += `
-                    <div class="inventory-item ${item.status}">
-                        <span>${item.name}${quantityText}</span>
-                        <span class="inventory-status ${statusClass}">${statusText}</span>
-                    </div>
+                    <div class="inventory-category">
+                        <h4>${category.title}</h4>
                 `;
-            });
 
-            content += `</div>`;
-        });
+                category.items.forEach(item => {
+                    const statusClass = item.status === 'have' ? 'status-have' : 'status-need';
+                    const statusText = item.status === 'have' ? '✓ Have' : '✗ Need';
+                    const quantityText = item.quantity ? ` (${item.quantity})` : '';
+                    
+                    content += `
+                        <div class="inventory-item ${item.status}">
+                            <span>${item.name}${quantityText}</span>
+                            <span class="inventory-status ${statusClass}">${statusText}</span>
+                        </div>
+                    `;
+                });
+
+                content += `</div>`;
+            });
+        } else {
+            content += `<p>Inventory data not available.</p>`;
+        }
 
         content += `
                 <div class="inventory-tip">
@@ -374,9 +378,12 @@ class MealPlannerCalendar {
     }
 }
 
-// Initialize the calendar when the page loads
+// Initialize the calendar when the page loads and all scripts are available
 document.addEventListener('DOMContentLoaded', () => {
-    new MealPlannerCalendar();
+    // Wait a brief moment to ensure meals-data.js is fully loaded
+    setTimeout(() => {
+        new MealPlannerCalendar();
+    }, 100);
 });
 
 // Add some interactive features
