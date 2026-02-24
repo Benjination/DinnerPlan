@@ -65,10 +65,6 @@
             "Mushrooms"
         ],
         "freshFruits": [
-            "Apples",
-            "Bananas", 
-            "Grapes",
-            "Berries (blueberries, strawberries)"
         ],
         "breadGrains": [
             "Tortillas",
@@ -85,8 +81,6 @@
             "Vegetable broth"
         ],
         "pantryItems": [
-            "Nutritional yeast",
-            "Ground turmeric"
         ]
     },
     "2026-03-09": {
@@ -105,10 +99,6 @@
             "Mixed vegetables"
         ],
         "freshFruits": [
-            "Apples",
-            "Bananas",
-            "Grapes", 
-            "Berries"
         ],
         "breadGrains": [
             "Buns",
@@ -120,8 +110,6 @@
             "Frozen potatoes"
         ],
         "pantryItems": [
-            "Olive oil",
-            "Lemon juice"
         ]
     },
     "2026-03-16": {
@@ -132,13 +120,12 @@
             "Cauliflower",
             "Lettuce",
             "Tomatoes",
-            "Bell peppers"
+            "Bell peppers",
+            "Bananas"
         ],
         "freshFruits": [
-            "Bananas",
             "Oat milk",
-            "Berries",
-            "Lime juice"
+            "Berries"
         ],
         "breadGrains": [
             "Tortillas",
@@ -149,11 +136,10 @@
             "Cashews",
             "Refried beans",
             "Salsa",
-            "Black beans"
+            "Black beans",
+            "Lime juice"
         ],
         "pantryItems": [
-            "Pancake mix",
-            "Maple syrup"
         ]
     },
     "2026-03-23": {
@@ -172,10 +158,6 @@
             "Green onions"
         ],
         "freshFruits": [
-            "Apples",
-            "Bananas",
-            "Grapes",
-            "Berries"
         ],
         "breadGrains": [
             "Whole grain bread"
@@ -188,7 +170,6 @@
             "Black beans"
         ],
         "pantryItems": [
-            "Italian dressing"
         ]
     },
     "2026-03-30": {
@@ -202,8 +183,6 @@
             "Garlic"
         ],
         "freshFruits": [
-            "Apples",
-            "Bananas"
         ],
         "breadGrains": [
         ],
