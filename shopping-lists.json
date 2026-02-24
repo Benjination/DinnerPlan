@@ -50,5 +50,167 @@
             "Croutons",
             "Cashews"
         ]
+    },
+    "2026-03-02": {
+        "freshVegetables": [
+            "Lettuce",
+            "Tomatoes", 
+            "Avocado",
+            "Peas",
+            "Carrots",
+            "Garlic",
+            "Bell pepper",
+            "Broccoli",
+            "Cauliflower",
+            "Mushrooms"
+        ],
+        "freshFruits": [
+            "Apples",
+            "Bananas", 
+            "Grapes",
+            "Berries (blueberries, strawberries)"
+        ],
+        "breadGrains": [
+            "Tortillas",
+            "Bread"
+        ],
+        "otherFresh": [
+            "Fake meat crumbles",
+            "Salsa",
+            "Russet potatoes",
+            "Tofu",
+            "Vegan sour cream",
+            "Vegan butter",
+            "Chives",
+            "Vegetable broth"
+        ],
+        "pantryItems": [
+            "Nutritional yeast",
+            "Ground turmeric"
+        ]
+    },
+    "2026-03-09": {
+        "freshVegetables": [
+            "Red bell peppers",
+            "Mushrooms",
+            "Onion",
+            "Parsley",
+            "Garlic",
+            "Yellow squash",
+            "Zucchini",
+            "Green onions",
+            "Tomato",
+            "Lettuce",
+            "Pickles",
+            "Mixed vegetables"
+        ],
+        "freshFruits": [
+            "Apples",
+            "Bananas",
+            "Grapes", 
+            "Berries"
+        ],
+        "breadGrains": [
+            "Buns",
+            "Penne pasta"
+        ],
+        "otherFresh": [
+            "Chickpeas",
+            "Hummus",
+            "Frozen potatoes"
+        ],
+        "pantryItems": [
+            "Olive oil",
+            "Lemon juice"
+        ]
+    },
+    "2026-03-16": {
+        "freshVegetables": [
+            "Cucumber",
+            "Carrots",
+            "Avocado",
+            "Cauliflower",
+            "Lettuce",
+            "Tomatoes",
+            "Bell peppers"
+        ],
+        "freshFruits": [
+            "Bananas",
+            "Oat milk",
+            "Berries",
+            "Lime juice"
+        ],
+        "breadGrains": [
+            "Tortillas",
+            "Tortilla chips"
+        ],
+        "otherFresh": [
+            "Liquid smoke",
+            "Cashews",
+            "Refried beans",
+            "Salsa",
+            "Black beans"
+        ],
+        "pantryItems": [
+            "Pancake mix",
+            "Maple syrup"
+        ]
+    },
+    "2026-03-23": {
+        "freshVegetables": [
+            "Mixed stir-fry vegetables",
+            "Ginger",
+            "Mixed greens", 
+            "Tomatoes",
+            "Cucumber",
+            "Carrots",
+            "Mixed vegetables",
+            "Roasted vegetables",
+            "Zucchini",
+            "Bell peppers",
+            "Sweet potatoes",
+            "Green onions"
+        ],
+        "freshFruits": [
+            "Apples",
+            "Bananas",
+            "Grapes",
+            "Berries"
+        ],
+        "breadGrains": [
+            "Whole grain bread"
+        ],
+        "otherFresh": [
+            "Chickpeas",
+            "Vegetable broth",
+            "Herbs",
+            "Tahini",
+            "Black beans"
+        ],
+        "pantryItems": [
+            "Italian dressing"
+        ]
+    },
+    "2026-03-30": {
+        "freshVegetables": [
+            "Mixed beans",
+            "Tomatoes",
+            "Bell peppers",
+            "Onions",
+            "Tofu",
+            "Mixed vegetables",
+            "Garlic"
+        ],
+        "freshFruits": [
+            "Apples",
+            "Bananas"
+        ],
+        "breadGrains": [
+        ],
+        "otherFresh": [
+            "Chili spices"
+        ],
+        "pantryItems": [
+        ]
     }
 }
