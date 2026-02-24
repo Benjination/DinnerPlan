@@ -203,6 +203,16 @@ jobs:
 
         fs.writeFileSync('meals-data.js', jsContent);
         console.log('✅ Updated meals-data.js successfully');
+
+        // Generate shopping lists JSON
+        console.log('📝 Generating shopping lists...');
+        // This would extract shopping list data from meal plan files
+        // For now, maintaining current shopping list structure
+        
+        // Generate pantry inventory JSON  
+        console.log('📦 Generating pantry inventory...');
+        // This would extract inventory data from on-hand.txt
+        // For now, maintaining current inventory structure
         EOF
 
         node parse-meals.js

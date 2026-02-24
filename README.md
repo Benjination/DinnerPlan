@@ -61,7 +61,7 @@ The app reads meal data from your meal plan text files and displays them in an i
    - Click Save
 
 4. **Access Your App**:
-   - Your app will be available at: `https://YOUR-USERNAME.github.io/family-meal-planner`
+   - Your app will be available at: `https://benjination.github.io/DinnerPlan/`
    - Share this link with your family!
 
 ## Updating Meals 📝

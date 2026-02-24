@@ -1,0 +1,54 @@
+{
+    "2026-02-23": {
+        "freshVegetables": [
+            "Stir-fry vegetable mix",
+            "Sweet potatoes",
+            "Asparagus",
+            "Celery, carrots (for soup)",
+            "Lettuce, tomatoes, cucumber (for sandwiches/salads)",
+            "Mushrooms",
+            "Potatoes (for soup)",
+            "Broccoli, cauliflower (for sheet-pan)"
+        ],
+        "freshFruits": [
+            "Apples",
+            "Grapes",
+            "Berries (blueberries, strawberries)"
+        ],
+        "breadGrains": [
+            "Whole grain bread"
+        ],
+        "otherFresh": [
+            "Oat milk",
+            "Hummus",
+            "Low-sodium vegetable broth",
+            "Low-sodium marinara sauce"
+        ],
+        "pantryItems": [
+            "Garlic",
+            "Onion (1)",
+            "Ginger",
+            "Italian seasoning",
+            "Better than bouillon",
+            "Vegetable broth (2)",
+            "Refried beans (2)",
+            "Black beans (3)",
+            "Tomato sauce (2)",
+            "Penne pasta",
+            "Rigatoni pasta",
+            "Chickpeas",
+            "Alfredo sauce",
+            "Salsa",
+            "Liquid smoke",
+            "Garlic powder",
+            "Tahini",
+            "Fake meat crumbles",
+            "Frozen fruit",
+            "Tortillas",
+            "Taco shells",
+            "Wooden skewers",
+            "Croutons",
+            "Cashews"
+        ]
+    }
+}

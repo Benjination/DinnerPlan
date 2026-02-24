@@ -152,7 +152,7 @@ class MealPlannerCalendar {
         return dayElement;
     }
 
-    showShoppingList(date) {
+    async showShoppingList(date) {
         const detailsElement = document.getElementById('mealDetails');
         const dateElement = document.getElementById('detailsDate');
         const contentElement = document.getElementById('detailsContent');
@@ -166,133 +166,163 @@ class MealPlannerCalendar {
         };
         dateElement.textContent = `${date.toLocaleDateString('en-US', options)} - Shopping List`;
 
-        // Get shopping list for this week
-        const dateString = this.formatDateString(date);
-        const shoppingData = typeof getShoppingListForDate === 'function' ? getShoppingListForDate(dateString) : null;
-
-        let content = `
-            <div class="shopping-info">
-                <h3>🛒 Weekly Shopping List</h3>
-                <p class="shopping-subtitle">Ingredients needed for this week's meals</p>
-        `;
-
-        if (shoppingData) {
-            // Fresh Vegetables
-            if (shoppingData.freshVegetables && shoppingData.freshVegetables.length > 0) {
-                content += `
-                    <h4>🥕 Fresh Vegetables:</h4>
-                    <div class="shopping-category">
-                        ${shoppingData.freshVegetables.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
-                    </div>
-                `;
-            }
-
-            // Fresh Fruits
-            if (shoppingData.freshFruits && shoppingData.freshFruits.length > 0) {
-                content += `
-                    <h4>🍎 Fresh Fruits:</h4>
-                    <div class="shopping-category">
-                        ${shoppingData.freshFruits.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
-                    </div>
-                `;
-            }
-
-            // Bread & Grains
-            if (shoppingData.breadGrains && shoppingData.breadGrains.length > 0) {
-                content += `
-                    <h4>🍞 Bread & Grains:</h4>
-                    <div class="shopping-category">
-                        ${shoppingData.breadGrains.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
-                    </div>
-                `;
-            }
-
-            // Other Fresh Items
-            if (shoppingData.otherFresh && shoppingData.otherFresh.length > 0) {
-                content += `
-                    <h4>🥛 Other Fresh Items:</h4>
-                    <div class="shopping-category">
-                        ${shoppingData.otherFresh.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
-                    </div>
-                `;
-            }
-
-            // Pantry Items
-            if (shoppingData.pantryItems && shoppingData.pantryItems.length > 0) {
-                content += `
-                    <h4>🏪 Pantry Items:</h4>
-                    <div class="shopping-category">
-                        ${shoppingData.pantryItems.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
-                    </div>
-                `;
-            }
-        } else {
-            content += `<p>No shopping list available for this date.</p>`;
-        }
-
-        content += `
-                <div class="shopping-tip">
-                    <p><strong>💡 Tip:</strong> Check items off as you shop, and don't forget reusable bags!</p>
-                </div>
-            </div>
-        `;
-
-        contentElement.innerHTML = content;
+        // Show loading message
+        contentElement.innerHTML = '<div style="text-align: center; padding: 2rem;">Loading shopping list... 🛒</div>';
         detailsElement.classList.add('active');
+
+        try {
+            // Fetch shopping list data
+            const response = await fetch('shopping-lists.json');
+            const shoppingData = await response.json();
+            
+            const dateString = this.formatDateString(date);
+            const weekData = shoppingData[dateString];
+
+            let content = `
+                <div class="shopping-info">
+                    <h3>🛒 Weekly Shopping List</h3>
+                    <p class="shopping-subtitle">Ingredients needed for this week's meals</p>
+            `;
+
+            if (weekData) {
+                // Fresh Vegetables
+                if (weekData.freshVegetables && weekData.freshVegetables.length > 0) {
+                    content += `
+                        <h4>🥕 Fresh Vegetables:</h4>
+                        <div class="shopping-category">
+                            ${weekData.freshVegetables.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                        </div>
+                    `;
+                }
+
+                // Fresh Fruits
+                if (weekData.freshFruits && weekData.freshFruits.length > 0) {
+                    content += `
+                        <h4>🍎 Fresh Fruits:</h4>
+                        <div class="shopping-category">
+                            ${weekData.freshFruits.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                        </div>
+                    `;
+                }
+
+                // Bread & Grains
+                if (weekData.breadGrains && weekData.breadGrains.length > 0) {
+                    content += `
+                        <h4>🍞 Bread & Grains:</h4>
+                        <div class="shopping-category">
+                            ${weekData.breadGrains.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                        </div>
+                    `;
+                }
+
+                // Other Fresh Items
+                if (weekData.otherFresh && weekData.otherFresh.length > 0) {
+                    content += `
+                        <h4>🥛 Other Fresh Items:</h4>
+                        <div class="shopping-category">
+                            ${weekData.otherFresh.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                        </div>
+                    `;
+                }
+
+                // Pantry Items
+                if (weekData.pantryItems && weekData.pantryItems.length > 0) {
+                    content += `
+                        <h4>🏪 Pantry Items:</h4>
+                        <div class="shopping-category">
+                            ${weekData.pantryItems.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                        </div>
+                    `;
+                }
+            } else {
+                content += `<p>No shopping list available for this date.</p>`;
+            }
+
+            content += `
+                    <div class="shopping-tip">
+                        <p><strong>💡 Tip:</strong> Check items off as you shop, and don't forget reusable bags!</p>
+                    </div>
+                </div>
+            `;
+
+            contentElement.innerHTML = content;
+        } catch (error) {
+            contentElement.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <p>Unable to load shopping list data.</p>
+                    <p style="color: #888; font-size: 0.9rem;">Please try again later.</p>
+                </div>
+            `;
+            console.error('Error loading shopping list:', error);
+        }
     }
 
-    showInventory() {
+    async showInventory() {
         const detailsElement = document.getElementById('mealDetails');
         const dateElement = document.getElementById('detailsDate');
         const contentElement = document.getElementById('detailsContent');
 
         dateElement.textContent = "📦 Pantry Inventory";
 
-        // Get inventory data
-        const inventory = typeof getOnHandInventory === 'function' ? getOnHandInventory() : null;
-
-        let content = `
-            <div class="inventory-info">
-                <h3>📦 Current Pantry Status</h3>
-                <p class="inventory-subtitle">Check what you have and what you need</p>
-        `;
-
-        if (inventory) {
-            Object.keys(inventory).forEach(categoryKey => {
-                const category = inventory[categoryKey];
-                content += `
-                    <div class="inventory-category">
-                        <h4>${category.title}</h4>
-                `;
-
-                category.items.forEach(item => {
-                    const statusClass = item.status === 'have' ? 'status-have' : 'status-need';
-                    const statusText = item.status === 'have' ? '✓ Have' : '✗ Need';
-                    const quantityText = item.quantity ? ` (${item.quantity})` : '';
-                    
-                    content += `
-                        <div class="inventory-item ${item.status}">
-                            <span>${item.name}${quantityText}</span>
-                            <span class="inventory-status ${statusClass}">${statusText}</span>
-                        </div>
-                    `;
-                });
-
-                content += `</div>`;
-            });
-        } else {
-            content += `<p>Inventory data not available.</p>`;
-        }
-
-        content += `
-                <div class="inventory-tip">
-                    <p><strong>💡 Tip:</strong> Items marked "Need" are already on your shopping lists. Add any low items to this week's list!</p>
-                </div>
-            </div>
-        `;
-
-        contentElement.innerHTML = content;
+        // Show loading message
+        contentElement.innerHTML = '<div style="text-align: center; padding: 2rem;">Loading pantry inventory... 📦</div>';
         detailsElement.classList.add('active');
+
+        try {
+            // Fetch inventory data
+            const response = await fetch('pantry-inventory.json');
+            const inventory = await response.json();
+
+            let content = `
+                <div class="inventory-info">
+                    <h3>📦 Current Pantry Status</h3>
+                    <p class="inventory-subtitle">Check what you have and what you need</p>
+            `;
+
+            if (inventory) {
+                Object.keys(inventory).forEach(categoryKey => {
+                    const category = inventory[categoryKey];
+                    content += `
+                        <div class="inventory-category">
+                            <h4>${category.title}</h4>
+                    `;
+
+                    category.items.forEach(item => {
+                        const statusClass = item.status === 'have' ? 'status-have' : 'status-need';
+                        const statusText = item.status === 'have' ? '✓ Have' : '✗ Need';
+                        const quantityText = item.quantity ? ` (${item.quantity})` : '';
+                        
+                        content += `
+                            <div class="inventory-item ${item.status}">
+                                <span>${item.name}${quantityText}</span>
+                                <span class="inventory-status ${statusClass}">${statusText}</span>
+                            </div>
+                        `;
+                    });
+
+                    content += `</div>`;
+                });
+            } else {
+                content += `<p>Inventory data not available.</p>`;
+            }
+
+            content += `
+                    <div class="inventory-tip">
+                        <p><strong>💡 Tip:</strong> Items marked "Need" are already on your shopping lists. Add any low items to this week's list!</p>
+                    </div>
+                </div>
+            `;
+
+            contentElement.innerHTML = content;
+        } catch (error) {
+            contentElement.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <p>Unable to load pantry inventory data.</p>
+                    <p style="color: #888; font-size: 0.9rem;">Please try again later.</p>
+                </div>
+            `;
+            console.error('Error loading inventory:', error);
+        }
     }
 
     showMealDetails(date, mealData) {
