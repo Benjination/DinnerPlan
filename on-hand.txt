@@ -1,73 +1,72 @@
 On-Hand Pantry Items (Long-storing)
 
 Grains & Noodles:
-- Rice Y
-- Spaghetti noodles Y
-- Lo mein noodles Y
-- Ramen noodles y
-- Penne pasta x
-- Rigatoni pasta x
+- Rice ✓
+- Spaghetti noodles ✓
+- Lo mein noodles ✓
+- Ramen noodles ✓
+- Penne pasta ✓
+- Rigatoni pasta ✓ 
 
 Canned/Jarred:
-- Refried beans 2
-- Black beans 3
-- Chickpeas x
-- Vegetable broth 2
-- Better than bouillon x
-- Marinara sauce y
-- Tomato sauce 2
-- Alfredo sauce x
-- Salsa x
+- Refried beans ✓
+- Black beans ✓
+- Chickpeas ✓
+- Vegetable broth ✓
+- Better than bouillon ✓
+- Marinara sauce ✓
+- Tomato sauce ✓
+- Salsa ✓ 
 
 Condiments & Sauces:
-- Soy sauce y
-- Italian dressing y
-- Vegan mayo y
-- Sesame oil y
-- Olive oil y
-- Liquid smoke x
+- Soy sauce ✓
+- Italian dressing ✓
+- Vegan mayo ✓
+- Sesame oil ✓
+- Olive oil ✓
+- Liquid smoke ✓ 
 
 Spices & Seasonings:
-- Garlic x
-- Onion 1
-- Italian seasoning x
-- Taco seasoning x
-- Ginger x
-- Turmeric y
-- Cumin y
-- Paprika y
-- Salt and pepper y
-- Garlic powder x
+- Garlic ✓
+- Onion ✓
+- Italian seasoning ✓
+- Taco seasoning ✓
+- Ginger ✓
+- Turmeric ✓
+- Cumin ✓
+- Paprika ✓
+- Salt and pepper ✓
+- Garlic powder ✓ 
 
 Pantry Staples:
-- Nutritional yeast y
-- Tahini x
-- White miso paste y
-- Lemon juice y
-- Vanilla extract y
-- Maple syrup y
-- Wasabi y
-- Pancake mix y
+- Nutritional yeast ✓
+- Tahini ✓
+- White miso paste ✓
+- Lemon juice ✓
+- Vanilla extract ✓
+- Maple syrup ✓
+- Wasabi ✓
+- Pancake mix ✓ 
 
 Frozen Items:
-- Fake meat crumbles x
-- Impossible burgers y
-- Frozen fruit x
+- Fake meat crumbles ✓
+- Impossible burgers ✓
+- Frozen fruit ✓ 
 
 Dry/Shelf-stable:
-- Tortillas x
-- Taco shells x
-- Seaweed wraps y
-- Wooden skewers x
-- Bacon bits y
-- Croutons x
+- Tortillas ✓
+- Taco shells ✓
+- Seaweed wraps ✓
+- Wooden skewers ✓
+- Bacon bits ✓
+- Croutons ✓ 
 
 ---
 
 Meals (Fresh ingredients to buy)
 
 - Burritos
-    Tomatoes x
+    Tomatoes 
     Lettuce
 
 - Smoothies

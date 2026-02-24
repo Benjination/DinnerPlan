@@ -6,22 +6,22 @@
             { "name": "Spaghetti noodles", "status": "have" },
             { "name": "Lo mein noodles", "status": "have" },
             { "name": "Ramen noodles", "status": "have" },
-            { "name": "Penne pasta", "status": "need" },
-            { "name": "Rigatoni pasta", "status": "need" }
+            { "name": "Penne pasta", "status": "have" },
+            { "name": "Rigatoni pasta", "status": "have" }
         ]
     },
     "canned_jarred": {
         "title": "Canned/Jarred",
         "items": [
-            { "name": "Refried beans", "status": "need", "quantity": "2" },
-            { "name": "Black beans", "status": "need", "quantity": "3" },
-            { "name": "Chickpeas", "status": "need" },
-            { "name": "Vegetable broth", "status": "need", "quantity": "2" },
-            { "name": "Better than bouillon", "status": "need" },
+            { "name": "Refried beans", "status": "have", "quantity": "2" },
+            { "name": "Black beans", "status": "have", "quantity": "3" },
+            { "name": "Chickpeas", "status": "have" },
+            { "name": "Vegetable broth", "status": "have", "quantity": "2" },
+            { "name": "Better than bouillon", "status": "have" },
             { "name": "Marinara sauce", "status": "have" },
-            { "name": "Tomato sauce", "status": "need", "quantity": "2" },
-            { "name": "Alfredo sauce", "status": "need" },
-            { "name": "Salsa", "status": "need" }
+            { "name": "Tomato sauce", "status": "have", "quantity": "2" },
+            { "name": "Alfredo sauce", "status": "have" },
+            { "name": "Salsa", "status": "have" }
         ]
     },
     "condiments_sauces": {
@@ -32,29 +32,29 @@
             { "name": "Vegan mayo", "status": "have" },
             { "name": "Sesame oil", "status": "have" },
             { "name": "Olive oil", "status": "have" },
-            { "name": "Liquid smoke", "status": "need" }
+            { "name": "Liquid smoke", "status": "have" }
         ]
     },
     "spices_seasonings": {
         "title": "Spices & Seasonings", 
         "items": [
-            { "name": "Garlic", "status": "need" },
-            { "name": "Onion", "status": "need", "quantity": "1" },
-            { "name": "Italian seasoning", "status": "need" },
-            { "name": "Taco seasoning", "status": "need" },
-            { "name": "Ginger", "status": "need" },
+            { "name": "Garlic", "status": "have" },
+            { "name": "Onion", "status": "have", "quantity": "1" },
+            { "name": "Italian seasoning", "status": "have" },
+            { "name": "Taco seasoning", "status": "have" },
+            { "name": "Ginger", "status": "have" },
             { "name": "Turmeric", "status": "have" },
             { "name": "Cumin", "status": "have" },
             { "name": "Paprika", "status": "have" },
             { "name": "Salt and pepper", "status": "have" },
-            { "name": "Garlic powder", "status": "need" }
+            { "name": "Garlic powder", "status": "have" }
         ]
     },
     "pantry_staples": {
         "title": "Pantry Staples",
         "items": [
             { "name": "Nutritional yeast", "status": "have" },
-            { "name": "Tahini", "status": "need" },
+            { "name": "Tahini", "status": "have" },
             { "name": "White miso paste", "status": "have" },
             { "name": "Lemon juice", "status": "have" },
             { "name": "Vanilla extract", "status": "have" },
@@ -66,20 +66,20 @@
     "frozen_items": {
         "title": "Frozen Items",
         "items": [
-            { "name": "Fake meat crumbles", "status": "need" },
+            { "name": "Fake meat crumbles", "status": "have" },
             { "name": "Impossible burgers", "status": "have" },
-            { "name": "Frozen fruit", "status": "need" }
+            { "name": "Frozen fruit", "status": "have" }
         ]
     },
     "dry_shelf_stable": {
         "title": "Dry/Shelf-stable",
         "items": [
-            { "name": "Tortillas", "status": "need" },
-            { "name": "Taco shells", "status": "need" },
+            { "name": "Tortillas", "status": "have" },
+            { "name": "Taco shells", "status": "have" },
             { "name": "Seaweed wraps", "status": "have" },
-            { "name": "Wooden skewers", "status": "need" },
+            { "name": "Wooden skewers", "status": "have" },
             { "name": "Bacon bits", "status": "have" },
-            { "name": "Croutons", "status": "need" }
+            { "name": "Croutons", "status": "have" }
         ]
     }
 }
