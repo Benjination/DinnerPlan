@@ -137,13 +137,17 @@ class MealPlannerCalendar {
         // Click handler
         if (isCurrentMonth) {
             if (isSunday) {
+                // Create a new Date object to avoid closure issues
+                const clickDate = new Date(date);
                 dayElement.addEventListener('click', () => {
-                    this.showShoppingList(date);
+                    this.showShoppingList(clickDate);
                 });
                 dayElement.style.cursor = 'pointer';
             } else if (meal) {
+                // Create a new Date object to avoid closure issues
+                const clickDate = new Date(date);
                 dayElement.addEventListener('click', () => {
-                    this.showMealDetails(date, meal);
+                    this.showMealDetails(clickDate, meal);
                 });
                 dayElement.style.cursor = 'pointer';
             }
@@ -157,7 +161,7 @@ class MealPlannerCalendar {
         const dateElement = document.getElementById('detailsDate');
         const contentElement = document.getElementById('detailsContent');
 
-        // Format date
+        // Format date for display
         const options = { 
             weekday: 'long', 
             year: 'numeric', 
@@ -170,7 +174,10 @@ class MealPlannerCalendar {
         contentElement.innerHTML = '<div style="text-align: center; padding: 2rem;">Loading shopping list... 🛒</div>';
         detailsElement.classList.add('active');
 
+        // Format date for lookup (YYYY-MM-DD format)
         const dateString = this.formatDateString(date);
+        console.log('Looking for shopping list for date:', dateString); // Debug log
+        
         let weekData = null;
 
         try {
@@ -179,6 +186,7 @@ class MealPlannerCalendar {
             if (response.ok) {
                 const shoppingData = await response.json();
                 weekData = shoppingData[dateString];
+                console.log('Available dates in shopping data:', Object.keys(shoppingData)); // Debug log
             }
         } catch (error) {
             console.log('Could not load external shopping list, using fallback data');
@@ -241,6 +249,7 @@ class MealPlannerCalendar {
                 }
             };
             weekData = fallbackData[dateString];
+            console.log('Using fallback data for:', dateString, 'Found:', !!weekData); // Debug log
         }
 
         let content = `
@@ -300,7 +309,7 @@ class MealPlannerCalendar {
                 `;
             }
         } else {
-            content += `<p>No shopping list available for this date.</p>`;
+            content += `<p>No shopping list available for this date (${dateString}).</p>`;
         }
 
         content += `
