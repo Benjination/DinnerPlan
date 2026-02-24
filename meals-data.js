@@ -1,6 +1,6 @@
 // Meal Plan Data - Auto-updated from meal plan files
 const mealPlanData = {
-    "lastUpdated": "2026-02-23",
+    "lastUpdated": "2026-02-24",
     "dailyOptions": {
         "breakfast": [
             "Oatmeal with fresh berries",
@@ -832,7 +832,7 @@ const mealPlanData = {
                     "emoji": "🍽️",
                     "healthNote": "beta-carotene, plant protein, complex carbs"
                 },
-                "2026-03-30": {
+                "2026-03-29": {
                     "ingredients": [
                         {
                             "name": "Mixed beans",
@@ -859,7 +859,7 @@ const mealPlanData = {
                     "emoji": "🛒",
                     "healthNote": "protein-rich legumes, antioxidant-rich vegetables"
                 },
-                "2026-03-31": {
+                "2026-03-30": {
                     "ingredients": [
                         {
                             "name": "Tofu",
@@ -885,6 +885,29 @@ const mealPlanData = {
                     "meal": "Crispy tofu with vegetables",
                     "emoji": "🍽️",
                     "healthNote": "complete protein, fresh vegetables, healthy preparation"
+                },
+                "2026-03-31": {
+                    "ingredients": [
+                        {
+                            "name": "Use remaining fresh vegetables",
+                            "onHand": false
+                        },
+                        {
+                            "name": "rice",
+                            "onHand": true
+                        },
+                        {
+                            "name": "soy sauce",
+                            "onHand": true
+                        },
+                        {
+                            "name": "any leftover proteins",
+                            "onHand": false
+                        }
+                    ],
+                    "meal": "End-of-month clean-out stir-fry",
+                    "emoji": "🍽️",
+                    "healthNote": "reduces food waste, uses seasonal vegetables"
                 }
             }
         }
