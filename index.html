@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Meal Planner</title>
+    <meta name="description" content="View family meals and ingredients on a mobile-friendly calendar">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+    <header>
+        <h1>🍽️ Family Meal Plan</h1>
+        <p class="subtitle">Kidney-Friendly Vegan Meals</p>
+    </header>
+
+    <main>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth" class="nav-btn">&lt;</button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth" class="nav-btn">&gt;</button>
+            </div>
+            
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Calendar will be generated here -->
+            </div>
+        </div>
+
+        <div class="meal-details" id="mealDetails">
+            <div class="details-content">
+                <h3 id="detailsDate"></h3>
+                <div id="detailsContent"></div>
+                <button id="closeMealDetails" class="close-btn">✕</button>
+            </div>
+        </div>
+
+        <div class="daily-options">
+            <h3>Daily Options</h3>
+            <div class="options-grid">
+                <div class="option-category">
+                    <h4>🥞 Breakfast</h4>
+                    <ul id="breakfastOptions"></ul>
+                </div>
+                <div class="option-category">
+                    <h4>🥙 Lunch</h4>
+                    <ul id="lunchOptions"></ul>
+                </div>
+                <div class="option-category">
+                    <h4>🍎 Snacks</h4>
+                    <ul id="snackOptions"></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>💚 Healthy meals for the family</p>
+        <p class="update-time">Last updated: <span id="lastUpdated"></span></p>
+    </footer>
+
+    <script src="meals-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

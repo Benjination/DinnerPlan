@@ -1,0 +1,215 @@
+name: Update Meal Data
+
+on:
+  push:
+    paths:
+      - 'Months/*.txt'
+      - 'meals.txt'
+      - 'on-hand.txt'
+  workflow_dispatch:
+
+jobs:
+  update-meal-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Parse meal plan files and update data
+      run: |
+        cat << 'EOF' > parse-meals.js
+        const fs = require('fs');
+        const path = require('path');
+
+        // Function to parse meal plan files
+        function parseMealPlanFiles() {
+            const mealData = {
+                lastUpdated: new Date().toISOString().split('T')[0],
+                dailyOptions: {
+                    breakfast: [
+                        "Oatmeal with fresh berries",
+                        "Cereal with oat milk",
+                        "Toast with almond butter",
+                        "Fresh fruit"
+                    ],
+                    lunch: [
+                        "Veggie sandwiches (hummus, lettuce, tomato, cucumber)",
+                        "Leftover dinner portions",
+                        "Salads with simple dressing",
+                        "Crackers with hummus"
+                    ],
+                    snacks: [
+                        "Fresh fruit (apples, grapes, berries)",
+                        "Crackers",
+                        "Small handful of cashews",
+                        "Carrots with hummus"
+                    ]
+                },
+                meals: {}
+            };
+
+            // Read all month files
+            const monthsDir = './Months';
+            if (fs.existsSync(monthsDir)) {
+                const monthFiles = fs.readdirSync(monthsDir).filter(f => f.endsWith('.txt'));
+                
+                monthFiles.forEach(file => {
+                    const content = fs.readFileSync(path.join(monthsDir, file), 'utf8');
+                    const monthData = parseMonthFile(content, file);
+                    if (monthData) {
+                        Object.assign(mealData.meals, monthData);
+                    }
+                });
+            }
+
+            return mealData;
+        }
+
+        function parseMonthFile(content, filename) {
+            const lines = content.split('\n');
+            const meals = {};
+            let currentMeal = null;
+            let currentDate = null;
+            
+            lines.forEach(line => {
+                line = line.trim();
+                
+                // Match date patterns like "**SUNDAY, Feb 23**" or "**MONDAY, Feb 24**"
+                const dateMatch = line.match(/\*\*(\w+),\s+(\w+)\s+(\d+)\*\*/);
+                if (dateMatch) {
+                    const [, dayName, month, day] = dateMatch;
+                    const year = new Date().getFullYear(); // Assume current year
+                    const monthNum = getMonthNumber(month);
+                    if (monthNum) {
+                        currentDate = `${year}-${monthNum.toString().padStart(2, '0')}-${day.padStart(2, '0')}`;
+                        currentMeal = { ingredients: [] };
+                    }
+                    return;
+                }
+                
+                // Match dinner lines like "🛒 **Dinner:** Spaghetti..."
+                const dinnerMatch = line.match(/[🛒🍽️]\s*\*\*Dinner:\*\*\s*(.+)/);
+                if (dinnerMatch && currentMeal && currentDate) {
+                    currentMeal.meal = dinnerMatch[1];
+                    currentMeal.emoji = line.includes('🛒') ? '🛒' : '🍽️';
+                    
+                    // Check for shopping day note
+                    if (line.includes('Shopping Day')) {
+                        currentMeal.note = 'Shopping Day';
+                    }
+                    return;
+                }
+                
+                // Match ingredient lines like "*Ingredients: ..."
+                const ingredientMatch = line.match(/\*Ingredients:\s*(.+)\*/);
+                if (ingredientMatch && currentMeal) {
+                    const ingredientText = ingredientMatch[1];
+                    const ingredients = ingredientText.split(',').map(ing => {
+                        const trimmed = ing.trim();
+                        const onHand = trimmed.includes('(on hand)');
+                        const name = trimmed.replace('(on hand)', '').trim();
+                        return { name, onHand };
+                    });
+                    currentMeal.ingredients = ingredients;
+                    return;
+                }
+                
+                // Match health notes like "*Kidney-friendly: ..."
+                const healthMatch = line.match(/\*Kidney-friendly:\s*(.+)\*/);
+                if (healthMatch && currentMeal) {
+                    currentMeal.healthNote = healthMatch[1];
+                    
+                    // Store completed meal
+                    if (currentDate && currentMeal.meal) {
+                        const [year, month] = currentDate.split('-');
+                        const monthKey = `${year}-${month}`;
+                        
+                        if (!meals[monthKey]) {
+                            meals[monthKey] = {
+                                title: `${getMonthName(parseInt(month))} ${year} Meal Plan`,
+                                weeks: {}
+                            };
+                        }
+                        
+                        meals[monthKey].weeks[currentDate] = { ...currentMeal };
+                    }
+                    
+                    currentMeal = null;
+                    currentDate = null;
+                    return;
+                }
+            });
+            
+            return meals;
+        }
+
+        function getMonthNumber(monthName) {
+            const months = {
+                'jan': '01', 'january': '01',
+                'feb': '02', 'february': '02',
+                'mar': '03', 'march': '03',
+                'apr': '04', 'april': '04',
+                'may': '05',
+                'jun': '06', 'june': '06',
+                'jul': '07', 'july': '07',
+                'aug': '08', 'august': '08',
+                'sep': '09', 'september': '09',
+                'oct': '10', 'october': '10',
+                'nov': '11', 'november': '11',
+                'dec': '12', 'december': '12'
+            };
+            return months[monthName.toLowerCase()];
+        }
+
+        function getMonthName(monthNum) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            return months[monthNum - 1];
+        }
+
+        // Main execution
+        const mealData = parseMealPlanFiles();
+
+        // Generate the JavaScript file
+        const jsContent = `// Meal Plan Data - Auto-updated from meal plan files
+        const mealPlanData = ${JSON.stringify(mealData, null, 4)};
+
+        // Helper function to get meal for a specific date
+        function getMealForDate(dateString) {
+            const [year, month] = dateString.split('-');
+            const monthKey = \`\${year}-\${month}\`;
+            
+            if (mealPlanData.meals[monthKey] && mealPlanData.meals[monthKey].weeks[dateString]) {
+                return mealPlanData.meals[monthKey].weeks[dateString];
+            }
+            return null;
+        }
+
+        // Helper function to check if date has a meal planned
+        function hasMP(dateString) {
+            return getMealForDate(dateString) !== null;
+        }`;
+
+        fs.writeFileSync('meals-data.js', jsContent);
+        console.log('✅ Updated meals-data.js successfully');
+        EOF
+
+        node parse-meals.js
+    
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add meals-data.js
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Auto-update meal data from meal plan files 🍽️"
+          git push
+        fi

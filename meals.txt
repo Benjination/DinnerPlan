@@ -1,0 +1,202 @@
+Meals
+
+- Burritos
+    Refried beans
+    Tortillas
+    Tomatoes
+    Lettuce
+    Salsa
+- Smoothies
+    Frozen fruit
+    Oat milk
+    Apples
+    Bananas
+    Spinach (optional)
+- Spaghetti
+    Noodles
+    Marinara sauce
+    Fake meat crumbles
+    Garlic
+    Italian seasoning
+- Vegetable soup with French bread
+    Celery
+    Carrots
+    Potatoes
+    Vegetable broth
+    Mushrooms
+    Onion
+    Garlic
+    Better than bouillon
+    French Bread
+- Fake meat tacos
+    Taco shells
+    Fake meat crumbles
+    Taco seasoning
+    Tomatoes
+    Lettuce
+    Salsa
+- Salads
+    Lettuce
+    Tomatoes
+    Carrots
+    Cucumber
+    Vidalia onion
+    Italian dressing
+    Bacon bits
+    Croutons
+- Stir-fry
+    Stir-fry vegetables
+    Rice
+    Soy sauce
+    Garlic
+    Ginger
+- Loaded baked potatoes
+    Russet potatoes
+    Bacon bits
+    Vegan sour cream
+    Vegan butter
+    Chives
+- Veggie fried rice with peas
+    Rice
+    Peas
+    Carrots
+    Onion
+    Soy sauce
+    Garlic
+- Veggie sandwiches
+    Lettuce
+    Tomatoes
+    Cucumber
+    Sprouts
+    Bread
+    Vegan mayo
+    Avocado
+- Specialty pastas
+    Penne or rigatoni
+    Tomato or alfredo sauce
+    Vegetables
+    Italian seasoning
+- Tofu scramble with toast
+    Tofu
+    Bread
+    Nutritional yeast
+    Turmeric
+    Onion
+    Bell pepper
+- Veggie lo mein with sauce
+    Broccoli
+    Cauliflower
+    Lo mein noodles
+    Soy sauce
+    Sesame oil
+    Garlic
+- Sheet-pan veggies with sweet potatoes
+    Sweet potatoes
+    Broccoli
+    Asparagus
+    Cauliflower
+    Olive oil
+    Salt and pepper
+- Black beans and rice
+    Black beans
+    Rice
+    Vegetable broth
+    Mushrooms
+    Onion
+    Cumin
+- Stuffed bell peppers
+    Red bell peppers
+    Rice
+    Mushrooms
+    Onion
+    Garlic
+    Vegetable broth
+- Sushi night
+    Cucumber
+    Carrots
+    Seaweed wraps
+    Rice
+    Avocado
+    Soy sauce
+    Wasabi
+- Vegan pancakes
+    Pancake mix
+    Banana (egg substitute)
+    Oat milk
+    Vanilla extract
+    Maple syrup
+- Ramen with miso soup
+    Ramen noodles
+    White miso paste
+    Vegetable broth
+    Green onions
+    Mushrooms
+    Seaweed
+- Baked falafel nuggets
+    Chickpeas
+    Onion
+    Garlic
+    Parsley
+    Cumin
+    Tahini
+- Fake meat hamburgers
+    Impossible burgers
+    Buns
+    Tomato
+    Pickles
+    Lettuce
+    Vegan mayo
+    French fries
+- Cashew queso
+    Cashews
+    Nutritional yeast
+    Lemon juice
+    Garlic powder
+    Salt
+- Asparagus and rice
+    Asparagus
+    Rice
+    Soy sauce
+    Garlic
+    Sesame oil
+- Yellow squash and zucchini
+    Yellow squash
+    Zucchini
+    Mushrooms
+    Rice
+    Onion
+    Olive oil
+- Bean dip
+    Refried beans
+    Salsa
+    Nutritional yeast
+    Tortilla chips
+- Fruit kebabs
+    Strawberries
+    Pineapple
+    Grapes
+    Melon
+    Wooden skewers
+- Smoked cauliflower
+    Cauliflower
+    Liquid smoke
+    Carrots
+    Olive oil
+    Paprika
+- Mushroom miso risotto
+    Mushrooms
+    White miso paste
+    Rice
+    Onion
+    Garlic
+    Vegetable broth
+
+
+Bonus (snacks/staples)
+
+- Oat milk
+- Cereal
+- Hummus
+- Triscuits
+- Juice
+- Tortilla chips
