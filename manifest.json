@@ -1,7 +1,7 @@
 {
     "name": "Family Meal Planner",
     "short_name": "Meal Plan",
-    "description": "View family meals and ingredients on a mobile-friendly calendar",
+    "description": "View family healthy meals and ingredients on a mobile-friendly calendar",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#667eea",

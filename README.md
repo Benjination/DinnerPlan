@@ -5,9 +5,9 @@ A mobile-friendly web application for displaying family meal plans with an inter
 ## Features ✨
 
 - **📅 Interactive Calendar**: View meals by date with a clean, mobile-first design
-- **📱 Mobile Responsive**: Optimized for smartphones and tablets
+- **� Shopping Lists**: Click Sundays for weekly shopping lists organized by category- **📦 Pantry Inventory**: View current on-hand items to check what you're running low on- **�📱 Mobile Responsive**: Optimized for smartphones and tablets
 - **🥗 Meal Details**: Click any day to see ingredients and health notes
-- **💚 Health-Focused**: Displays kidney-friendly meal information
+- **💚 Health-Focused**: Displays healthy meal information
 - **🔄 Auto-Updates**: Data syncs when meal plan files are updated
 - **⚡ Fast Loading**: Lightweight and optimized for quick access
 
@@ -16,9 +16,11 @@ A mobile-friendly web application for displaying family meal plans with an inter
 The app reads meal data from your meal plan text files and displays them in an interactive calendar format. Family members can:
 
 1. View the monthly calendar with meal titles
-2. Click on any day to see detailed ingredients
-3. Check which ingredients are already on-hand (marked with ✓)
-4. View daily breakfast, lunch, and snack options
+2. Click on any meal day to see detailed ingredients
+3. **Click on Sundays to see the weekly shopping list** 🛒
+4. **Click "View Pantry" to check on-hand inventory** 📦
+5. Check which ingredients are already on-hand (marked with ✓)
+6. View daily breakfast, lunch, and snack options
 
 ## File Structure 📁
 

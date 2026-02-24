@@ -34,6 +34,10 @@ class MealPlannerCalendar {
             this.closeMealDetails();
         });
 
+        document.getElementById('showInventoryBtn').addEventListener('click', () => {
+            this.showInventory();
+        });
+
         document.getElementById('mealDetails').addEventListener('click', (e) => {
             if (e.target.id === 'mealDetails') {
                 this.closeMealDetails();
@@ -97,6 +101,7 @@ class MealPlannerCalendar {
         const isCurrentMonth = date.getMonth() === currentMonth;
         const dateString = this.formatDateString(date);
         const meal = getMealForDate(dateString);
+        const isSunday = date.getDay() === 0; // 0 = Sunday
         
         if (!isCurrentMonth) {
             dayElement.classList.add('other-month');
@@ -106,29 +111,184 @@ class MealPlannerCalendar {
             dayElement.classList.add('has-meal');
         }
 
+        if (isSunday && isCurrentMonth) {
+            dayElement.classList.add('shopping-day');
+        }
+
         // Day number
         const dayNumber = document.createElement('div');
         dayNumber.className = 'day-number';
         dayNumber.textContent = date.getDate();
         dayElement.appendChild(dayNumber);
 
-        // Meal title if exists
+        // Meal title if exists, or shopping indicator for Sunday
         if (meal && isCurrentMonth) {
             const mealTitle = document.createElement('div');
             mealTitle.className = 'meal-title';
             mealTitle.textContent = `${meal.emoji} ${meal.meal}`;
             dayElement.appendChild(mealTitle);
+        } else if (isSunday && isCurrentMonth) {
+            const shoppingTitle = document.createElement('div');
+            shoppingTitle.className = 'shopping-title';
+            shoppingTitle.textContent = '🛒 Shopping List';
+            dayElement.appendChild(shoppingTitle);
         }
 
         // Click handler
-        if (meal && isCurrentMonth) {
-            dayElement.addEventListener('click', () => {
-                this.showMealDetails(date, meal);
-            });
-            dayElement.style.cursor = 'pointer';
+        if (isCurrentMonth) {
+            if (isSunday) {
+                dayElement.addEventListener('click', () => {
+                    this.showShoppingList(date);
+                });
+                dayElement.style.cursor = 'pointer';
+            } else if (meal) {
+                dayElement.addEventListener('click', () => {
+                    this.showMealDetails(date, meal);
+                });
+                dayElement.style.cursor = 'pointer';
+            }
         }
 
         return dayElement;
+    }
+
+    showShoppingList(date) {
+        const detailsElement = document.getElementById('mealDetails');
+        const dateElement = document.getElementById('detailsDate');
+        const contentElement = document.getElementById('detailsContent');
+
+        // Format date
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        dateElement.textContent = `${date.toLocaleDateString('en-US', options)} - Shopping List`;
+
+        // Get shopping list for this week
+        const dateString = this.formatDateString(date);
+        const shoppingData = getShoppingListForDate(dateString);
+
+        let content = `
+            <div class="shopping-info">
+                <h3>🛒 Weekly Shopping List</h3>
+                <p class="shopping-subtitle">Ingredients needed for this week's meals</p>
+        `;
+
+        if (shoppingData) {
+            // Fresh Vegetables
+            if (shoppingData.freshVegetables && shoppingData.freshVegetables.length > 0) {
+                content += `
+                    <h4>🥕 Fresh Vegetables:</h4>
+                    <div class="shopping-category">
+                        ${shoppingData.freshVegetables.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                    </div>
+                `;
+            }
+
+            // Fresh Fruits
+            if (shoppingData.freshFruits && shoppingData.freshFruits.length > 0) {
+                content += `
+                    <h4>🍎 Fresh Fruits:</h4>
+                    <div class="shopping-category">
+                        ${shoppingData.freshFruits.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                    </div>
+                `;
+            }
+
+            // Bread & Grains
+            if (shoppingData.breadGrains && shoppingData.breadGrains.length > 0) {
+                content += `
+                    <h4>🍞 Bread & Grains:</h4>
+                    <div class="shopping-category">
+                        ${shoppingData.breadGrains.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                    </div>
+                `;
+            }
+
+            // Other Fresh Items
+            if (shoppingData.otherFresh && shoppingData.otherFresh.length > 0) {
+                content += `
+                    <h4>🥛 Other Fresh Items:</h4>
+                    <div class="shopping-category">
+                        ${shoppingData.otherFresh.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                    </div>
+                `;
+            }
+
+            // Pantry Items
+            if (shoppingData.pantryItems && shoppingData.pantryItems.length > 0) {
+                content += `
+                    <h4>🏪 Pantry Items:</h4>
+                    <div class="shopping-category">
+                        ${shoppingData.pantryItems.map(item => `<div class="shopping-item">• ${item}</div>`).join('')}
+                    </div>
+                `;
+            }
+        } else {
+            content += `<p>No shopping list available for this date.</p>`;
+        }
+
+        content += `
+                <div class="shopping-tip">
+                    <p><strong>💡 Tip:</strong> Check items off as you shop, and don't forget reusable bags!</p>
+                </div>
+            </div>
+        `;
+
+        contentElement.innerHTML = content;
+        detailsElement.classList.add('active');
+    }
+
+    showInventory() {
+        const detailsElement = document.getElementById('mealDetails');
+        const dateElement = document.getElementById('detailsDate');
+        const contentElement = document.getElementById('detailsContent');
+
+        dateElement.textContent = "📦 Pantry Inventory";
+
+        // Get inventory data
+        const inventory = getOnHandInventory();
+
+        let content = `
+            <div class="inventory-info">
+                <h3>📦 Current Pantry Status</h3>
+                <p class="inventory-subtitle">Check what you have and what you need</p>
+        `;
+
+        Object.keys(inventory).forEach(categoryKey => {
+            const category = inventory[categoryKey];
+            content += `
+                <div class="inventory-category">
+                    <h4>${category.title}</h4>
+            `;
+
+            category.items.forEach(item => {
+                const statusClass = item.status === 'have' ? 'status-have' : 'status-need';
+                const statusText = item.status === 'have' ? '✓ Have' : '✗ Need';
+                const quantityText = item.quantity ? ` (${item.quantity})` : '';
+                
+                content += `
+                    <div class="inventory-item ${item.status}">
+                        <span>${item.name}${quantityText}</span>
+                        <span class="inventory-status ${statusClass}">${statusText}</span>
+                    </div>
+                `;
+            });
+
+            content += `</div>`;
+        });
+
+        content += `
+                <div class="inventory-tip">
+                    <p><strong>💡 Tip:</strong> Items marked "Need" are already on your shopping lists. Add any low items to this week's list!</p>
+                </div>
+            </div>
+        `;
+
+        contentElement.innerHTML = content;
+        detailsElement.classList.add('active');
     }
 
     showMealDetails(date, mealData) {
@@ -165,9 +325,9 @@ class MealPlannerCalendar {
 
         content += `
                 </div>
-                <h4>💚 Health Benefits:</h4>
+                <h4>� Health Benefits:</h4>
                 <p style="background: #e8f5e8; padding: 0.75rem; border-radius: 6px; color: #27ae60;">
-                    Kidney-friendly: ${mealData.healthNote}
+                    Healthy choice: ${mealData.healthNote}
                 </p>
             </div>
         `;
@@ -221,11 +381,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add some interactive features
 document.addEventListener('DOMContentLoaded', () => {
-    // Add a subtle pulse animation to days with meals
+    // Add a subtle pulse animation to days with meals and shopping days
     const style = document.createElement('style');
     style.textContent = `
         .calendar-day.has-meal {
             animation: mealPulse 3s ease-in-out infinite;
+        }
+        
+        .calendar-day.shopping-day {
+            animation: shopPulse 3s ease-in-out infinite;
         }
         
         @keyframes mealPulse {
@@ -233,7 +397,13 @@ document.addEventListener('DOMContentLoaded', () => {
             50% { box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1); }
         }
         
-        .calendar-day.has-meal:hover {
+        @keyframes shopPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
+            50% { box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.1); }
+        }
+        
+        .calendar-day.has-meal:hover,
+        .calendar-day.shopping-day:hover {
             animation: none;
         }
     `;
